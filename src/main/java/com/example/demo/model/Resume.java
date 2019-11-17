@@ -1,59 +1,70 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
-public class Pets {
+public class Resume {
 
 	@Id
 	public ObjectId _id;
 
-	public String name;
-	public String species;
-	public String breed;
+	private PersonalDetails personalDetails;
+	private WorkSection workSection;
+	private EducationSection educationSection;
+	private List<CustomSection> customSections;
 
-	// Constructors
-	public Pets() {
+	private Resume() {
+		super();
+		customSections = new ArrayList<CustomSection>();
 	}
 
-	public Pets(ObjectId _id, String name, String species, String breed) {
-		this._id = _id;
-		this.name = name;
-		this.species = species;
-		this.breed = breed;
+	public Resume(PersonalDetails personalDetails) {
+		this();
+
+		this.personalDetails = personalDetails;
 	}
 
-	// ObjectId needs to be converted to string
-	public String get_id() {
-		return _id.toHexString();
+	public ObjectId get_id() {
+		return _id;
 	}
 
 	public void set_id(ObjectId _id) {
 		this._id = _id;
 	}
 
-	public String getName() {
-		return name;
+	public PersonalDetails getPersonalDetails() {
+		return personalDetails;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPersonalDetails(PersonalDetails personalDetails) {
+		this.personalDetails = personalDetails;
 	}
 
-	public String getSpecies() {
-		return species;
+	public WorkSection getWorkSection() {
+		return workSection;
 	}
 
-	public void setSpecies(String species) {
-		this.species = species;
+	public void setWorkSection(WorkSection workSection) {
+		this.workSection = workSection;
 	}
 
-	public String getBreed() {
-		return breed;
+	public EducationSection getEducationSection() {
+		return educationSection;
 	}
 
-	public void setBreed(String breed) {
-		this.breed = breed;
+	public void setEducationSection(EducationSection educationSection) {
+		this.educationSection = educationSection;
+	}
+
+	public List<CustomSection> getCustomSections() {
+		return customSections;
+	}
+
+	public void addCustomSections(CustomSection customSection) {
+		this.customSections.add(customSection);
 	}
 
 }

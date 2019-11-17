@@ -12,42 +12,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.Pets;
-import com.example.demo.repository.PetsRepository;
+import com.example.demo.model.Resume;
+import com.example.demo.repository.ResumeRepository;
 
 @RestController
-@RequestMapping("/pets")
-public class PetsController {
+@RequestMapping("/resume")
+public class ResumeController {
 
 	@Autowired
-	PetsRepository petsRepository;
+	ResumeRepository resumeRepository;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public List<Pets> getAllPets() {
-		return petsRepository.findAll();
+	public List<Resume> getAllResume() {
+		return resumeRepository.findAll();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Pets getPetById(@PathVariable("id") ObjectId id) {
-		return petsRepository.findBy_id(id);
+	public Resume getResumeById(@PathVariable("id") ObjectId id) {
+		return resumeRepository.findBy_id(id);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public void modifyPetById(@PathVariable("id") ObjectId id, @Valid @RequestBody Pets pets) {
-		pets.set_id(id);
-		petsRepository.save(pets);
+	public void modifyResumeById(@PathVariable("id") ObjectId id, @Valid @RequestBody Resume resume) {
+		resume.set_id(id);
+		resumeRepository.save(resume);
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public Pets createPet(@Valid @RequestBody Pets pets) {
-		pets.set_id(ObjectId.get());
-		petsRepository.save(pets);
-		return pets;
+	public Resume createResume(@Valid @RequestBody Resume resume) {
+		resume.set_id(ObjectId.get());
+		resumeRepository.save(resume);
+		return resume;
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deletePet(@PathVariable ObjectId id) {
-		petsRepository.delete(petsRepository.findBy_id(id));
+	public void deleteResume(@PathVariable ObjectId id) {
+		resumeRepository.delete(resumeRepository.findBy_id(id));
 	}
 
 }
